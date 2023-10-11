@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        #num1,
+        #num2,
+        #resultado_final {
+            display: block;
+        }
+
+        #num1:focus,
+        #num2:focus {
+            background-color: yellow;
+        }
+
+        #aumento {
+            visibility: hidden;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 450px;
+            border: 2px solid black;
+            background-color: grey;
+        }
+
+        #aumento input {
+            position: relative;
+            top: 50%;
+            background-color: lightgrey;
+            width: 693px;
+            height: 50px;
+            font-size: 50px;
+        }
+
+        #aumento button {
+            position: relative;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, 500%);
+            font-size: 20px;
+        }
+    </style>
+
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <!--Elegimos qué modo de calculadora queremos-->
+    <button onclick="modoCientifico()">Científica</button>
+    <button onclick="modoNormal()">Normal</button>
+
+    <br><br>
+    <!--Escribimos los números con los que realizaremos las operaciones-->
+    <input type="text" id="num1" placeholder="Introduce un número">
+    <input type="text" id="num2" placeholder="Introduce un número">
+
+    <!--Botones para hacer las operaciones-->
+    <button onclick="sumar()">+</button>
+    <button onclick="restar()">-</button>
+    <button onclick="multiplicar()">*</button>
+    <button onclick="division()">/</button>
+    <button id="elevar" onclick="elevar()">^</button>
+
+    <!--Input del resultado-->
+    <input type="number" id="resultado_final" value="0" readonly>
+
+    <br>
+    <!--Botones de limpiar y hacer el resultado más grande-->
+    <button onclick="limpiar()">Restaurar</button>
+    <button onclick="mostrarLupa()">Lupa</button>
+
+    <!--Div Lupa-->
+    <div id="aumento">
+        <input type="text" readonly id="resultado_lupa">
+        <button onclick="ocultarLupa()">Salir</button>
+    </div>
+
+    <script>
+        // Habilitar el operador "Elevar"
+        function modoCientifico() {
+            let botonelevar = document.getElementById('elevar')
+            botonelevar.disabled = false;
+        };
+        // Deshabilitar el operador "Elevar"
+        function modoNormal() {
+            let botonelevar = document.getElementById('elevar')
+            botonelevar.disabled = true;
+        };
+        // Sumar los 
+        function sumar() {
+            const numero1 = parseInt(document.getElementById('num1').value);
+            const numero2 = parseInt(document.getElementById('num2').value);
+
+            let resultado = numero1 + numero2;
+
+            document.getElementById('resultado_final').value = resultado;
+
+            if (resultado > 0) {
+                resultado.style.color = 'green';
+                resultado.style.fontWeight = 'bold';
+            } else if (resultado < 0) {
+                resultado.style.color = 'red';
+                resultado.style.fontWeight = 'bold';
+            }
+        };
+
+
+        function restar() {
+            const numero1 = parseInt(document.getElementById('num1').value);
+            const numero2 = parseInt(document.getElementById('num2').value);
+
+            let resultado = numero1 - numero2;
+            document.getElementById('resultado_final').value = resultado;
+        };
+
+        function multiplicar() {
+            const numero1 = parseInt(document.getElementById('num1').value);
+            const numero2 = parseInt(document.getElementById('num2').value);
+
+            let resultado = numero1 * numero2;
+            document.getElementById('resultado_final').value = resultado;
+        };
+
+        function division() {
+            const numero1 = parseInt(document.getElementById('num1').value);
+            const numero2 = parseInt(document.getElementById('num2').value);
+
+            let resultado = numero1 / numero2;
+            document.getElementById('resultado_final').value = resultado;
+        };
+
+        function elevar() {
+            const numero1 = parseInt(document.getElementById('num1').value);
+            const numero2 = parseInt(document.getElementById('num2').value);
+
+            let resultado = numero1 ** numero2;
+            document.getElementById('resultado_final').value = resultado;
+        };
+
+        numero.textContent = document.getElementById('resultado:final').value;
+
+        function limpiar() {
+            document.getElementById('num1').value = '';
+            document.getElementById('num2').value = '';
+            document.getElementById('resultado_final').value = '0';
+        };
+
+        function mostrarLupa() {
+            let divLupa = document.getElementById('aumento')
+            divLupa.style.visibility = 'visible';
+
+            document.getElementById('resultado_lupa').value = document.getElementById('resultado_final').value;
+        };
+
+        function ocultarLupa() {
+            let divLupa = document.getElementById('aumento')
+            divLupa.style.visibility = 'hidden';
+        };
+    </script>
+
+</body>
+
+</html>

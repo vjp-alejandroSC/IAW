@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>POO</title>
+    </head>
+    <body>
+        <p id="parrafo"></p>
+        <p id="parrafo_2"></p>
+
+        <script>
+            /*
+            // Función constructora del objeto Superheroe
+            // "this" hace referencia al objeto actual que se está construyendo
+            function Superheroe(nombre, apellido, alias, peso, altura){
+                this.nombre=nombre;
+                this.apellido=apellido;
+                this.alias=alias;
+                this.peso=peso;
+                this.altura=altura;
+            };
+
+            // new guarda en memoria un espacio y guarda dentro los parámetros que le pasemos nosotros
+            Superheroe.prototype.mostrar=function(){
+                return "Mi nombre es: " + this.nombre + ", " + this.apellido + ", " + this.alias;
+            }
+            let spider_man = new Superheroe('Peter', 'Parker', 'Spiderman', 85, 190);
+            let hulk= new Superheroe('Bruce', 'Banner', 'Hulk', 522, 300);
+            document.getElementById("parrafo").innerHTML=spider_man.mostrar();
+            */
+
+        	class Superheroe{
+                // Atributos
+                nombre;
+                apellido;
+                alias;
+                altura;
+                peso;
+                edad;
+
+                // Funcionalidad
+                constructor(nombre, apellido, edad){
+                    this.nombre=nombre;
+                    this.apellido=apellido;
+                    this.edad=edad;
+                }
+
+                toString(){
+                    return "Mi nombre es: " + this.nombre + ", " + this.apellido;
+                }
+
+                setAltura(altura){
+                    this.altura=altura;
+                }
+
+                setNombre(nombre){
+                    this.nombre=nombre;
+                }
+
+                setEdad(edad){
+                    this.edad=edad;
+                }
+            };
+
+            var flash = new Superheroe("Barry", "Allen");
+            var batman = new Superheroe("Bruce", "Wayne")
+            batman.setNombre("Anthony");
+            batman.setAltura(190);
+            batman.setEdad(32);
+            document.getElementById("parrafo").innerHTML=flash.toString();
+            document.getElementById("parrafo_2").innerHTML=batman.toString();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Debuggin JavaScript!!!</title>
+    <meta content="text/html" charset="utf-8"></meta> 
+</head>
+<body style="background-color: darkgreen;">
+    <div id="seccion-operaciones-id" style="margin: auto; border: 2px solid gray; width: 500px; height: 90px; background-color: white; text-align: left; padding: 10px;">
+        <p>Mostraremos el resultado de una operacion....</p>
+    </div>
+
+    <div style="width: 150px; margin: auto; padding-top: 50px; padding-bottom: 50px;">
+        <div style="display: inline-block; margin-right: 20px;">
+            <button onclick="operar();">Operar</button>
+        </div>
+        <div style="display: inline-block;">
+            <button onclick="limpiar();">Limpiar</button>
+        </div>
+    </div>
+
+    <script>
+        var a = 7, b = 3;
+        /*
+        Función para incluir contenido dinámico en el DOM de HTML
+        */
+        function operar(){
+             if (document.getElementById("nuevo-parrafo-id")==null){
+                var parrafoResultado=document.createElement('p') // Creación del elemento p
+                parrafoResultado.setAttribute("id", "nuevo-parrafo-id");
+                var resultado=a+b;
+                var text=document.createTextNode("El resultado de sumar " + a + " y " + b + " es: " + resultado) // Creación de un texto
+                parrafoResultado.appendChild(text); // Añadimos el texto al elemento p
+                document.getElementById("seccion-operaciones-id").appendChild(parrafoResultado); // Añadimos el elemento "p" al "div"  
+            }
+            
+        }
+
+        function limpiar(){
+            if(document.getElementById("nuevo-parrafo-id")!=null){
+                document.getElementById("seccion-operaciones-id").removeChild(
+                    document.getElementById("nuevo-parrafo-id")
+                );
+            }
+        
+        }
+
+    </script>
+
+
+</body>
+</html>

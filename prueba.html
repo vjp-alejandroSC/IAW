@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        input:focus {
+            background-color: lightblue;
+        }
+        #resultado {
+            color: green;
+        }
+        #resultado.negativo {
+            color: red;
+        }
+        #lupa-container {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="operand1">
+    <input type="text" id="operand2">
+    <button id="calcular">Calcular</button>
+    <button id="restaurar">Restaurar</button>
+    <button id="lupa-btn">Lupa</button>
+    <div id="lupa-container">
+        <h2>Resultado Ampliado:</h2>
+        <div id="resultado-lupa"></div>
+        <button id="salir-lupa">Salir Lupa</button>
+    </div>
+    <br>
+    <input type="text" id="resultado" disabled>
+    <script>
+        // Variables para los elementos de la página
+        const operand1Input = document.getElementById('operand1');
+        const operand2Input = document.getElementById('operand2');
+        const operatorSelect = document.getElementById('operator');
+        const resultadoInput = document.getElementById('resultado');
+        const lupaBtn = document.getElementById('lupa-btn');
+        const lupaContainer = document.getElementById('lupa-container');
+        const resultadoLupa = document.getElementById('resultado-lupa');
+        const salirLupaBtn = document.getElementById('salir-lupa');
+
+        // Función para calcular el resultado
+        function calcularResultado() {
+            const operand1 = parseFloat(operand1Input.value);
+            const operand2 = parseFloat(operand2Input.value);
+            const operator = operatorSelect.value;
+
+            if (isNaN(operand1) || isNaN(operand2)) {
+                alert('Por favor, ingrese valores válidos para los operandos.');
+                return;
+            }
+
+            if (operator === '/' && operand2 === 0) {
+                alert('No se puede dividir por 0.');
+                return;
+            }
+
+            let resultado = 0;
+
+            switch (operator) {
+                case '+':
+                    resultado = operand1 + operand2;
+                    break;
+                case '-':
+                    resultado = operand1 - operand2;
+                    break;
+                case '*':
+                    resultado = operand1 * operand2;
+                    break;
+                case '/':
+                    resultado = operand1 / operand2;
+                    break;
+                case '^':
+                    resultado = Math.pow(operand1, operand2);
+                    break;
+            }
+
+            resultadoInput.value = resultado;
+
+            // Cambiar el color del resultado
+            resultadoInput.classList.remove('negativo');
+            if (resultado <= 0) {
+                resultadoInput.classList.add('negativo');
+            }
+        }
+
+        // Función para mostrar la lupa
+        function mostrarLupa() {
+            resultadoLupa.textContent = resultadoInput.value;
+            lupaContainer.style.display = 'block';
+        }
+
+        // Función para ocultar la lupa
+        function ocultarLupa() {
+            lupaContainer.style.display = 'none';
+        }
+
+        // Limpiar la calculadora
+        function restaurar() {
+            operand1Input.value = '';
+            operand2Input.value = '';
+            resultadoInput.value = '';
+        }
+
+        // Event listeners
+        document.getElementById('calcular').addEventListener('click', calcularResultado);
+        document.getElementById('restaurar').addEventListener('click', restaurar);
+        lupaBtn.addEventListener('click', mostrarLupa);
+        salirLupaBtn.addEventListener('click', ocultarLupa);
+    </script>
+</body>
+</html>
