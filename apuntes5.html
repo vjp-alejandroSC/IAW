@@ -7,6 +7,7 @@
         <form action="" method="get" onsubmit="return validarDireccion2();">
             <label for="direccion-txt">Dirección </label><input type="text" name="direccion-txt" id="direccion-txt">
             <label for="tlfn-txt">Teléfono</label> <input type="text" name="tlfn-txt" id="tlfn-txt">
+            <label for="direccion-facturacion">Dirección Facturación</label> <input type="text" name="direccion-facturacion" id="direccion-facturacion">
             <button type="submit">Enviar</button>
             <button type="reset">Limpiar</button>
         </form>
@@ -59,11 +60,17 @@
         document.getElementById("direccion-txt").value; // Para asegurar que el formulario enviará los datos sin espacios en blanco al principio y al final, asignamos la variable contenido al componente dirección. 
         return valorRetorno; // Punto de retorno único
     }
+
     
+    /*
     function validarTelefono() {
         let contenido=document.getElementById("tlfn-txt").value;
     }
-
+    */
     
+    /*
+    Que la longitud sea mayor de 10 caracteres
+    */
+
     
 </script>
