@@ -1,0 +1,29 @@
+VM2609:1 Console was cleared
+undefined
+switch(a){
+    case 1: {
+        console.log("El número es 1");
+    }
+    case 2: {
+        console.log("El número es 2");
+    }
+    case 3: {
+        console.log("El número es 3");
+    }
+    default: console.log("El número es mayor que 3");}
+VM2993:11 El número es mayor que 3
+undefined
+switch(a){
+    case 1: {
+        console.log("El número es 1");
+    }
+    case 2: {
+        console.log("El número es 2");
+    }
+    case 3: {
+        console.log("El número es 3");
+    }
+    default: {console.log("El número es mayor que 3");}
+}
+VM3003:11 El número es mayor que 3
+undefined
