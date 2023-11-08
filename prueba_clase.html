@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba</title>
+    <title>Apuntes IAW</title>
 </head>
 <body>
-    <!-- Un input text que transforme la entrada del usuario a mayúsculas -->
-<input type="text" id="input-id" oninput="mayusculas()">
+    <!-- Un input text que transforme la entrada del usuario a mayúsculas
+<input type="text" id="direccion" oninput="mayusculas()"> -->
 
+<label for="direccion">Direccion: </label><input type="text" id="direccion" name="direccion">
+<label for="telefono">Teléfono: </label><input type="text" id="telefono" name="telefono">
+<label for="dni">DNI: </label><input type="text" id="dni" name="dni">
+<label for="correo">Correo: </label><input type="text" id="correo" name="correo">
 
 <script>
     function mayusculas(){
-        document.getElementById("input-id").value = document.getElementById("input-id").value.toUpperCase();
+        document.getElementById("direccion").value = document.getElementById("direccion").value.toUpperCase();
     };
 </script>
 
