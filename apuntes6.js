@@ -292,6 +292,40 @@ console.log(PILOTOS.reverse());
 
 
 // Ejercicio 6
+function premios_f1(){
+    const PARRILLA = ["Alonso", "Sainz", "Hamilton", "Leclerc", "Bottas", "Russell"]
 
-const PARRILLA = ["Alonso", "Sainz", "Hamilton", "Leclerc", "Bottas", "Russell"]
+    linea = 0;
 
+    for(let i = 0; i < PARRILLA.length; i += 2) {
+        
+        piloto1= PARRILLA[i];
+        piloto2= PARRILLA[i+1];
+        linea ++;
+
+        console.log("Línea "+ linea + ":");
+        console.log(piloto1 + ",");
+        console.log(piloto2);
+        console.log("");
+    }
+}
+
+// Ejercicio 7
+
+function premios_f1_renglon(){
+    const PARRILLA = ["Alonso", "Sainz", "Hamilton", "Leclerc", "Bottas", "Russell"]
+
+    linea = 0;
+
+    for(let i = 0; i < PARRILLA.length; i += 2) {
+        
+        piloto1= PARRILLA[i];
+        piloto2= PARRILLA[i+1];
+        linea ++;
+
+        console.log("Línea "+ linea + ": " + piloto1 + ", " + piloto2);
+    }
+}
+
+
+// Ejercicio 8
