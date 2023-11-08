@@ -294,3 +294,4 @@ console.log(PILOTOS.reverse());
 // Ejercicio 6
 
 const PARRILLA = ["Alonso", "Sainz", "Hamilton", "Leclerc", "Bottas", "Russell"]
+
