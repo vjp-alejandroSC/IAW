@@ -1,23 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Apuntes IAW</title>
-</head>
-<body>
-    <!-- Un input text que transforme la entrada del usuario a mayúsculas
-<input type="text" id="direccion" oninput="mayusculas()"> -->
+    <head>
+        <meta charset="UTF-8">
+        <title>Apuntes IAW</title>
+    </head>
+    <body>
+        <!-- Un input text que transforme la entrada del usuario a mayúsculas
+    <input type="text" id="direccion" oninput="mayusculas()"> -->
 
-<label for="direccion">Direccion: </label><input type="text" id="direccion" name="direccion">
-<label for="telefono">Teléfono: </label><input type="text" id="telefono" name="telefono">
-<label for="dni">DNI: </label><input type="text" id="dni" name="dni">
-<label for="correo">Correo: </label><input type="text" id="correo" name="correo">
+        <form action="" method="get" onsubmit="return validarFormulario();">
+            <label for="direccion">Direccion: </label><input type="text" id="direccion" name="direccion"><br><br>
+            <label for="telefono">Teléfono: </label><input type="text" id="telefono" name="telefono"><br><br>
+            <label for="dni">DNI: </label><input type="text" id="dni" name="dni"><br><br>
+            <label for="correo">Correo: </label><input type="text" id="correo" name="correo"><br><br>
 
-<script>
-    // function mayusculas(){
-    //     document.getElementById("direccion").value = document.getElementById("direccion").value.toUpperCase();
-    // };
-</script>
+            <button type="submit">Enviar formulario</button>
+        </form>
+        <script>
+            // function mayusculas(){
+            //     document.getElementById("direccion").value = document.getElementById("direccion").value.toUpperCase();
+            // };
 
-</body>
+            function validarDireccion(){
+                let valorRetorno = true;
+
+                let contenidoDireccion = document.getElementById("direccion").value;
+
+                if ((contenidoDireccion.length < 5 ) || (contenidoDireccion.length >= 20)){
+                    valorRetorno = false;
+                }
+
+                return valorRetorno;
+            }
+
+            function validarTelefono(){
+                let valorRetorno = true;
+                let contenidoTelefono = document.getElementById("telefono").value;
+                const patronTlf = /^[6789]{1}\d{8}$/; // Poner siempre el caracter $ al final.
+                if (patronTlf.test(contenidoTelefono) == false){
+                    valorRetorno = false;
+                }
+
+                return valorRetorno;
+            }
+
+            function validarDNI(){
+                let valorRetorno = true;
+                let contenidoDNI = document.getElementById("dni").value;
+                const patronDNI = /^\d{8}[A-Z]{1}|[a-z]{1}$/;
+                if (patronDNI.test(contenidoDNI) == false){
+                    valorRetorno = false;
+                }
+
+                return valorRetorno;
+            }
+            
+            function validarFormulario(){
+                if (validarDireccion() == false) {
+                    alert("La dirección introducida es incorrecta.");
+                }
+                if (validarTelefono() == false) {
+                    alert("El teléfono introducido es incorrecto.");
+                }
+                if (validarDNI() == false) {
+                    alert("El formato del DNI introducido es incorrecto.");
+                }
+            }
+
+        </script>
+    </body>
 </html>
