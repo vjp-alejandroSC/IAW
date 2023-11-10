@@ -47,8 +47,17 @@
             function validarDNI(){
                 let valorRetorno = true;
                 let contenidoDNI = document.getElementById("dni").value;
+
+                // Validación del formato del DNI
                 const patronDNI = /^\d{8}[A-Z]{1}|[a-z]{1}$/;
                 if (patronDNI.test(contenidoDNI) == false){
+                    valorRetorno = false;
+                }
+
+                // Validación de la letra del DNI
+                let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+                let letraDNI = letras[contenidoDNI.substring(0, 8)%23];
+                if (letraDNI != contenidoDNI.charAt(8)){
                     valorRetorno = false;
                 }
 
