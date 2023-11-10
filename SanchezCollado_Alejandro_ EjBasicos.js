@@ -177,11 +177,11 @@ function formato_array() {
     //  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11
 
     console.log("HORAS DE ESTUDIO:")
-    
+
     let mensaje = "";
 
     for (let i = 0; i < horas_estudio.length; i++) {
-        switch(i){
+        switch (i) {
 
             case 0: {
                 mensaje = "ENERO: ";
@@ -251,7 +251,7 @@ function formato_array() {
 
 function meses_max_estudio_repetido() {
     const horas_estudio = [30, 25, 40, 31, 51, 22, 19, 15, 51, 28, 34, 17]; // Array con las horas de estudio
-                  //  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11
+    //  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11
     max_horas = horas_estudio[0]; // Inicializo con valor 0 la hora más mayor de entre todas.
 
     mes_Maxhoras = 0; // El número del mes lo inicializo en la primera posición del array, o sea, a 0
@@ -292,18 +292,18 @@ console.log(PILOTOS.reverse());
 
 
 // Ejercicio 6
-function premios_f1(){
+function premios_f1() {
     const PARRILLA = ["Alonso", "Sainz", "Hamilton", "Leclerc", "Bottas", "Russell"]
 
     linea = 0;
 
-    for(let i = 0; i < PARRILLA.length; i += 2) {
-        
-        piloto1= PARRILLA[i];
-        piloto2= PARRILLA[i+1];
-        linea ++;
+    for (let i = 0; i < PARRILLA.length; i += 2) {
 
-        console.log("Línea "+ linea + ":");
+        piloto1 = PARRILLA[i];
+        piloto2 = PARRILLA[i + 1];
+        linea++;
+
+        console.log("Línea " + linea + ":");
         console.log(piloto1 + ",");
         console.log(piloto2);
         console.log("");
@@ -312,20 +312,130 @@ function premios_f1(){
 
 // Ejercicio 7
 
-function premios_f1_renglon(){
+function premios_f1_renglon() {
     const PARRILLA = ["Alonso", "Sainz", "Hamilton", "Leclerc", "Bottas", "Russell"]
 
     linea = 0;
 
-    for(let i = 0; i < PARRILLA.length; i += 2) {
-        
-        piloto1= PARRILLA[i];
-        piloto2= PARRILLA[i+1];
-        linea ++;
+    for (let i = 0; i < PARRILLA.length; i += 2) {
 
-        console.log("Línea "+ linea + ": " + piloto1 + ", " + piloto2);
+        piloto1 = PARRILLA[i];
+        piloto2 = PARRILLA[i + 1];
+        linea++;
+
+        console.log("Línea " + linea + ": " + piloto1 + ", " + piloto2);
     }
 }
 
 
 // Ejercicio 8
+
+
+// Array de los módulos del primer curso
+
+// function modulosASIRyNotas() {
+//     const modulos = [
+//         ['FHW', 'GBD', 'ISO', 'LMSGI', 'PARE', 'FOL'],
+//         ['SRI', 'IAW', 'EIE', 'ASO', 'SAD', 'ASGBD']
+//     ];
+
+//     const notas = [
+//         [9,9,7,7,9,9], 
+//         [9,8,9,9,9,10]
+//     ];
+
+//     console.log("Notas en el ciclo de ASIR del alumno Alejandro Sánchez: ");
+
+//     for (let i = 0; i < modulos.length; i++) {
+//         if (i === 0) {
+//             console.log("Primer curso: ");
+//         } else {
+//             console.log("Segundo curso: ");
+//         }
+
+//         let linea = ""; // Creo una cadena para almacenar la salida en una línea
+//         let promedioPrimero = "";
+
+
+
+//         let promedioSegundo = "";
+//         let promedioCiclo = "";
+
+//         for (let j = 0; j < modulos[i].length; j++) {
+//             linea += modulos[i][j] + ": " + notas[i][j] + "; ";
+//         }
+
+//         console.log(linea); // Imprimo la cadena con la información del curso en una sola línea
+//         console.log();
+//     }
+// }
+
+function modulosASIRyNotas() {
+    const modulos = [
+        ['FHW', 'GBD', 'ISO', 'LMSGI', 'PARE', 'FOL'],
+        ['SRI', 'IAW', 'EIE', 'ASO', 'SAD', 'ASGBD']
+    ];
+
+    const notas = [
+        [9, 9, 7, 7, 9, 9],
+        [9, 8, 9, 9, 9, 10]
+    ];
+
+    console.log("Notas en el ciclo de ASIR del alumno Alejandro Sánchez: ");
+
+    let totalSuma = 0; // Variable para almacenar la suma total de las notas
+    let totalNumeros = 0; // Variable para almacenar el total de notas
+
+    for (let i = 0; i < modulos.length; i++) {
+        if (i === 0) {
+            console.log("Primer curso: ");
+        } else {
+            console.log("Segundo curso: ");
+        }
+
+        let linea = "";
+
+        let suma = 0; // Suma de notas por curso
+        let numero = modulos[i].length; // Número de módulos por curso
+
+        for (let j = 0; j < numero; j++) {
+            linea += modulos[i][j] + ": " + notas[i][j] + "; ";
+            suma += notas[i][j];
+            totalSuma += notas[i][j];
+            totalNumeros++;
+        }
+
+        console.log(linea);
+
+        const promedio = suma / numero;
+        if (i === 0) {
+            console.log("Promedio notas primer curso: " + promedio.toFixed(2));
+        } else {
+            console.log("Promedio notas segundo curso " + (i + 1) + ": " + promedio.toFixed(2));
+        }
+    }
+
+    const totalPromedio = totalSuma / totalNumeros;
+    console.log("Nota promedio ciclo: " + totalPromedio.toFixed(2));
+}
+
+// Ejercicio 9
+
+function transformarFrase() {
+    let frase = "implantación de aplicaciones web es un módulo del segundo curso del ciclo administración de sistemas informáticos en red";
+
+    // Reemplazar "aplicaciones web" por "Aplicaciones Web"
+    frase = frase.replace("implantación de aplicaciones web", "Implantación de Aplicaciones Web");
+
+    // Reemplazar "módulo del segundo curso" por "Módulo del segundo curso"
+    frase = frase.replace("módulo del segundo curso", "Módulo del segundo curso");
+
+    // Reemplazar "administración de sistemas informáticos en red" por "ASIR"
+    frase = frase.replace("administración de sistemas informáticos en red", "ASIR");
+
+    // Mostrar la frase modificada
+    console.log(frase);
+}
+
+// transformarFrase();
+
