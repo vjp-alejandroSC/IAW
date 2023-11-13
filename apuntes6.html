@@ -20,6 +20,8 @@
             // function mayusculas(){
             //     document.getElementById("direccion").value = document.getElementById("direccion").value.toUpperCase();
             // };
+            
+                const SEPARADOR_EMAIL = "@";
 
             function validarDireccion(){
                 let valorRetorno = true;
@@ -63,6 +65,27 @@
 
                 return valorRetorno;
             }
+
+            function validarEmail(){
+                let valorRetorno = true;
+                let contenidoEmail = document.getElementById("correo").value;
+                let vEmail = contenidoEmail.split("SEPARADOR_EMAIL");
+
+                if (vEmail.length!=2){
+                // Comprobación de la existencia del caracter "@" y de un nombre + un dominio
+                    valorRetorno = false;
+                } else if (vEmail[0].trim().length == 0){
+                    // El trim quita los espacios, es decir, "  a  " lo convierte en "a".
+                    // Comprobación del nombre de la dirección de correo
+                    valorRetorno = false;
+                } else if (vEmail[1].length <= 0){
+                    // Comprobar que hay un dominio en la dirección
+                    valorRetorno = false;
+                }
+                // Hacer el split con .
+                // Comprobar la longitud de cada una de las partes.
+            }
+            
             
             function validarFormulario(){
                 if (validarDireccion() == false) {
