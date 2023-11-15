@@ -1,104 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Apuntes IAW</title>
-    </head>
-    <body>
-        <!-- Un input text que transforme la entrada del usuario a mayúsculas
+
+<head>
+    <meta charset="UTF-8">
+    <title>Apuntes IAW</title>
+</head>
+
+<body>
+    <!-- Un input text que transforme la entrada del usuario a mayúsculas
     <input type="text" id="direccion" oninput="mayusculas()"> -->
 
-        <form action="" method="get" onsubmit="return validarFormulario();">
-            <label for="direccion">Direccion: </label><input type="text" id="direccion" name="direccion"><br><br>
-            <label for="telefono">Teléfono: </label><input type="text" id="telefono" name="telefono"><br><br>
-            <label for="dni">DNI: </label><input type="text" id="dni" name="dni"><br><br>
-            <label for="correo">Correo: </label><input type="text" id="correo" name="correo"><br><br>
+    <form action="" method="get" onsubmit="return validarFormulario();">
+        <label for="direccion">Direccion: </label><input type="text" id="direccion" name="direccion"><br><br>
+        <label for="telefono">Teléfono: </label><input type="text" id="telefono" name="telefono"><br><br>
+        <label for="dni">DNI: </label><input type="text" id="dni" name="dni"><br><br>
+        <label for="correo">Correo: </label><input type="text" id="correo" name="correo"><br><br>
 
-            <button type="submit">Enviar formulario</button>
-        </form>
-        <script>
-            // function mayusculas(){
-            //     document.getElementById("direccion").value = document.getElementById("direccion").value.toUpperCase();
-            // };
-            
-                const SEPARADOR_EMAIL = "@";
+        <button type="submit">Enviar formulario</button>
+    </form>
+    <script>
+        // function mayusculas(){
+        //     document.getElementById("direccion").value = document.getElementById("direccion").value.toUpperCase();
+        // };
 
-            function validarDireccion(){
-                let valorRetorno = true;
+        const SEPARADOR_EMAIL = "@";
 
-                let contenidoDireccion = document.getElementById("direccion").value;
+        function validarDireccion() {
+            let valorRetorno = true;
 
-                if ((contenidoDireccion.length < 5 ) || (contenidoDireccion.length >= 20)){
-                    valorRetorno = false;
-                }
+            let contenidoDireccion = document.getElementById("direccion").value;
 
-                return valorRetorno;
+            if ((contenidoDireccion.length < 5) || (contenidoDireccion.length >= 20)) {
+                valorRetorno = false;
             }
 
-            function validarTelefono(){
-                let valorRetorno = true;
-                let contenidoTelefono = document.getElementById("telefono").value;
-                const patronTlf = /^[6789]{1}\d{8}$/; // Poner siempre el caracter $ al final.
-                if (patronTlf.test(contenidoTelefono) == false){
-                    valorRetorno = false;
-                }
+            return valorRetorno;
+        }
 
-                return valorRetorno;
+        function validarTelefono() {
+            let valorRetorno = true;
+            let contenidoTelefono = document.getElementById("telefono").value;
+            const patronTlf = /^[6789]{1}\d{8}$/; // Poner siempre el caracter $ al final.
+            if (patronTlf.test(contenidoTelefono) == false) {
+                valorRetorno = false;
             }
 
-            function validarDNI(){
-                let valorRetorno = true;
-                let contenidoDNI = document.getElementById("dni").value;
+            return valorRetorno;
+        }
 
-                // Validación del formato del DNI
-                const patronDNI = /^\d{8}[A-Z]{1}|[a-z]{1}$/;
-                if (patronDNI.test(contenidoDNI) == false){
-                    valorRetorno = false;
-                }
+        function validarDNI() {
+            let valorRetorno = true;
+            let contenidoDNI = document.getElementById("dni").value;
 
-                // Validación de la letra del DNI
-                let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
-                let letraDNI = letras[contenidoDNI.substring(0, 8)%23];
-                if (letraDNI != contenidoDNI.charAt(8)){
-                    valorRetorno = false;
-                }
-
-                return valorRetorno;
+            // Validación del formato del DNI
+            const patronDNI = /^\d{8}[A-Z]{1}|[a-z]{1}$/;
+            if (patronDNI.test(contenidoDNI) == false) {
+                valorRetorno = false;
             }
 
-            function validarEmail(){
-                let valorRetorno = true;
-                let contenidoEmail = document.getElementById("correo").value;
-                let vEmail = contenidoEmail.split("SEPARADOR_EMAIL");
-
-                if (vEmail.length!=2){
-                // Comprobación de la existencia del caracter "@" y de un nombre + un dominio
-                    valorRetorno = false;
-                } else if (vEmail[0].trim().length == 0){
-                    // El trim quita los espacios, es decir, "  a  " lo convierte en "a".
-                    // Comprobación del nombre de la dirección de correo
-                    valorRetorno = false;
-                } else if (vEmail[1].length <= 0){
-                    // Comprobar que hay un dominio en la dirección
-                    valorRetorno = false;
-                }
-                // Hacer el split con .
-                // Comprobar la longitud de cada una de las partes.
-            }
-            
-            
-            function validarFormulario(){
-                if (validarDireccion() == false) {
-                    alert("La dirección introducida es incorrecta.");
-                }
-                if (validarTelefono() == false) {
-                    alert("El teléfono introducido es incorrecto.");
-                }
-                if (validarDNI() == false) {
-                    alert("El formato del DNI introducido es incorrecto.");
-                }
+            // Validación de la letra del DNI
+            let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+            let letraDNI = letras[contenidoDNI.substring(0, 8) % 23];
+            if (letraDNI != contenidoDNI.charAt(8)) {
+                valorRetorno = false;
             }
 
-        </script>
-    </body>
+            return valorRetorno;
+        }
+
+        function validarEmail() {
+            let valorRetorno = true; // Consideramos que la @ de correo es correcta
+
+            // Ahora comprobamos todos los casos en los que la @ de email es erronea.
+            let contenidoEmail = document.getElementById("correo").value;
+            let vEmail = contenidoEmail.split("SEPARADOR_EMAIL");
+
+            // Caso 1: si no tiene nombre y dominio separado por @
+            if (vEmail.length != 2) {
+            // Comprobación de la existencia del caracter "@" y de un nombre + un dominio
+                valorRetorno = false;
+            // Caso 2: si el nombre no existe
+            } else if (vEmail[0].trim().length == 0) {
+                // El trim quita los espacios, es decir, "  a  " lo convierte en "a".
+                // Comprobación del nombre de la dirección de correo
+                valorRetorno = false;
+            // Caso 3: El dominio no existe
+            } else if (vEmail[1].length <= 0) {
+                valorRetorno = false;
+            } else {
+                // Si estamos en este punto es porque existe el dominio
+                let vDominio = vEmail[1].split(".");
+                // Caso 3.1: Existe un subdominio y un dominio de nivel superior
+                if (vDominio.length > 2) {
+                    if ((vDominio[0].length <= 0) || (vDominio[1].length <= 0)) {
+                        valorRetorno = false;
+                    } else {
+                        valorRetorno = false;
+                    }
+                }
+            }
+
+            return valorRetorno;
+        }
+
+
+        function validarFormulario() {
+            if (validarDireccion() == false) {
+                alert("La dirección introducida es incorrecta.");
+            }
+            if (validarTelefono() == false) {
+                alert("El teléfono introducido es incorrecto.");
+            }
+            if (validarDNI() == false) {
+                alert("El formato del DNI introducido es incorrecto.");
+            }
+        }
+
+    </script>
+</body>
+
 </html>
