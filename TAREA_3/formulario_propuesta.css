@@ -1,4 +1,15 @@
-img {
+#imagen img {
     height: 150px;
-    margin-left: 50%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+#gris {
+    background-color: grey;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
 }

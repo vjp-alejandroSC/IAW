@@ -8,13 +8,31 @@
 </head>
 <body>
     <form action="">
-        <img src="../img/resources/Escudo_Plasencia.png" alt="">
+        <div id="imagen">
+            <img src="../img/resources/Escudo_Plasencia.png" alt="">
+        </div>
+
         <hr>
+
         <h1>FORMULARIO DE PROPUESTAS<br>PRESUPUESTOS PARTICIPATIVOS</h1>
+
         <hr>
-        <div>DATOS DE LA PROPUESTA</div>
+
+        <label for="datos_economicos">Ocultar datos económicos</label><input type="checkbox" id="datos_economicos">
+
+        <br><br>
+
+        <div id="gris">DATOS DE LA PROPUESTA</div>
+
+        <br><br>
+
         <fieldset>
             <legend>DATOS PERSONALES</legend>
+            <label for="nombre">Nombre </label><input type="text" name="nombre" id="nombre"><br><br>
+            <label for="apellidos">Apellidos </label><input type="text" name="apellidos" id="apellidos"><br><br>
+            <label for="nif">NIF/CIF </label><input type="text" name="nif" id="nif">
+            <label for="telefono">Teléfono </label><input type="text" name="telefono" id="telefono"><br><br>
+            <label for="correo">Correo electrónico </label><input type="text" name="correo" id="correo">
         </fieldset>
     </form>
 </body>
