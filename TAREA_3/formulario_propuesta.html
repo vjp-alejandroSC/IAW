@@ -20,7 +20,8 @@
 
         <hr>
 
-        <label for="datos_economicos">Ocultar datos económicos</label><input type="checkbox" id="datos_economicos">
+        <label for="datos_economicos">Ocultar datos económicos</label><input type="checkbox" id="datos_economicos"
+            onchange="mostrarPresupuesto()">
 
         <br><br>
 
@@ -31,17 +32,20 @@
         <fieldset>
             <legend>DATOS PERSONALES</legend>
             <label for="nombre">Nombre </label><input type="text" name="nombre" id="nombre" value="" required><br><br>
-            
-            <label for="apellidos">Apellidos </label><input type="text" name="apellidos" id="apellidos" value="" required><br><br>
-            
+
+            <label for="apellidos">Apellidos </label><input type="text" name="apellidos" id="apellidos" value=""
+                required><br><br>
+
             <label for="nif">NIF/CIF </label><input type="text" name="nif" id="nif" value="" required>
-            
-            <label for="telefono">Teléfono </label><input type="text" name="telefono" id="telefono" value="" required><br><br>
-            
-            <label for="correo">Correo electrónico </label><input type="text" name="correo" id="correo" value="" required><br><br>
-            
+
+            <label for="telefono">Teléfono </label><input type="text" name="telefono" id="telefono" value=""
+                required><br><br>
+
+            <label for="correo">Correo electrónico </label><input type="text" name="correo" id="correo" value=""
+                required><br><br>
+
             <label for="precargar">Precargar datos</label>
-            
+
             <input type="checkbox" id="precargar">
         </fieldset>
 
@@ -51,12 +55,13 @@
             <legend>TITULO DE LA PROPUESTA</legend>
             <textarea name="titulo" id="titulo" cols="120" rows="2"></textarea>
         </fieldset>
-        
+
         <br>
 
         <fieldset>
             <legend>DESCRIPCION DE LA PROPUESTA</legend>
-            <textarea name="descripcion" id="descripcion" cols="120" rows="8" placeholder="Breve descripción de la propuesta (por ejemplo, poner una fuente en Main St.)"></textarea>
+            <textarea name="descripcion" id="descripcion" cols="120" rows="8"
+                placeholder="Breve descripción de la propuesta (por ejemplo, poner una fuente en Main St.)"></textarea>
         </fieldset>
 
         <br>
@@ -72,36 +77,41 @@
 
         <fieldset>
             <legend>BENEFICIOS DE LA PROPUESTA</legend>
-            <input type="checkbox" name="infraestructuras" id="infraestructuras"><label for="infraestructuras">Mejora de las infraestructuras del municipio</label>
+            <input type="checkbox" name="infraestructuras" id="infraestructuras"><label for="infraestructuras">Mejora de
+                las infraestructuras del municipio</label>
             <input type="checkbox" name="demanda" id="demanda"><label for="demanda">Alta demanda</label>
-            
-            <br><br>
-
-            <input type="checkbox" name="urbanistica" id="urbanistica"><label for="urbanistica">Mejora de la estructura urbanística del municipio</label>
-            <input type="checkbox" name="turistica" id="turistica"><label for="turistica">Mejora de la estructura turística del municipio</label>
 
             <br><br>
 
-            <input type="checkbox" name="otro" id="otro"><input type="text" name="otro" id="otro" placeholder="Cualquier otro beneficio..." size="100">
+            <input type="checkbox" name="urbanistica" id="urbanistica"><label for="urbanistica">Mejora de la estructura
+                urbanística del municipio</label>
+            <input type="checkbox" name="turistica" id="turistica"><label for="turistica">Mejora de la estructura
+                turística del municipio</label>
+
+            <br><br>
+
+            <input type="checkbox" name="otro" id="otro"><input type="text" name="otro" id="otro"
+                placeholder="Cualquier otro beneficio..." size="100">
         </fieldset>
 
         <br>
 
-        <fieldset>
+        <fieldset id="presupuesto-section">
             <legend>PRESUPUESTOS DE LA PROPUESTA</legend>
             <input type="radio" name="presupuesto" id="menosmil"><label for="menosmil">Menos de 1000€</label>
             <input type="radio" name="presupuesto" id="milacinco"><label for="milacinco">De 1000 a 5000€</label>
             <input type="radio" name="presupuesto" id="cincoadiez"><label for="cincoadiez">De 5000 a 10000€</label>
         </fieldset>
-        
+
         <br>
 
         <fieldset>
             <legend>DURACIÓN DE LA PROPUESTA</legend>
-            <label for="fechainicio">Fecha de inicio de la propuesta</label> <input type="date" name="fechainicio" id="fechainicio">
+            <label for="fechainicio">Fecha de inicio de la propuesta</label> <input type="date" name="fechainicio"
+                id="fechainicio">
             <label for="fechafin">Fecha de fin de la propuesta</label> <input type="date" name="fechafin" id="fechafin">
         </fieldset>
-        
+
         <br>
 
         <fieldset>
@@ -110,107 +120,26 @@
             <input type="file" name="archivo" id="archivo">
         </fieldset>
 
-        <br><br><br><br><br>
+        <hr>
 
         <button type="reset">Borrar formulario</button>
-        <button type="submit">Enviar</button>
+        <button type="submit" id="enviar">Enviar</button>
+
+        <br>
+
+        <div id="imagen">
+            <img src="../img/resources/LogoPl.png" alt="logo">
+        </div>
+
     </form>
     <script>
+        function mostrarPresupuesto() {
+            var presupuestoSection = document.getElementById("presupuesto-section");
+            var checkbox = document.getElementById("datos_economicos");
 
-        const SEPARADOR_EMAIL = '@';
-
-        function validarDireccion() {
-            let valorRetorno = true;
-            let contenidoDireccion = document.getElementById("direccion").value;
-            if ((contenidoDireccion.length < 5) || (contenidoDireccion.length >= 20)) {
-                valorRetorno = false;
-            }
-
-            return valorRetorno;
+            // Si el checkbox está marcado, muestra la sección; de lo contrario, ocúltala
+            presupuestoSection.style.display = checkbox.checked ? "none" : "block";
         }
-
-        function validarTelefono() {
-            let valorRetorno = true;
-            let contenidoTelefono = document.getElementById("telefono").value;
-            const patronTlf = /^[6789]\d{8}$/;
-            if (patronTlf.test(contenidoTelefono) == false) {
-                valorRetorno = false;
-            }
-
-            return valorRetorno;
-        }
-
-        function validarFormulario() {
-            if (validarDireccion() == false) {
-                alert("La direccion introducida es incorrecta.");
-            }
-            if (validarTelefono() == false) {
-                alert("El telefono introducido es incorrecto.");
-            }
-            if (validarDNI() == false) {
-                alert("El DNI introducido es incorrecto.");
-            }
-            if (validarEmail() == false) {
-                alert("El email es incorrecto")
-            }
-        }
-
-        function validarDNI() {
-            let valorRetorno = true;
-            let contenidoDNI = document.getElementById("dni").value;
-
-            // Validación del formato del DNI
-            const patronDNI = /^\d{8}([A-Z]||[a-z])$/;
-            if (patronDNI.test(contenidoDNI) == false) {
-                valorRetorno = false;
-            }
-
-            // Validación de la letra del DNI
-            let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
-            let letraDNI = letras[contenidoDNI.substring(0, 8) % 23];
-            if (letraDNI != contenidoDNI.charAt(8)) {
-                valorRetorno = false;
-            }
-
-            return valorRetorno;
-        }
-
-        function validarEmail() {
-            let valorRetorno = true; // Consideramos que la @de correo es correcta
-            let email = (document.getElementById('correo').value).trim();
-            let vEmail = email.split('@');
-            if (vEmail.length != 2) {
-                valorRetorno = false;
-            } else {
-                let nombre = vEmail[0];
-                let dominio = vEmail[1];
-                if (nombre.length == 0) {
-                    valorRetorno = false;
-                } else {
-                    let vDominio = dominio.split('.');
-                    if (vDominio.length <= 1) {
-                        valorRetorno = false;
-                    } else {
-                        for (let i = 0; ((i < vDominio.length) && (valorRetorno != false)); i++) {
-                            if (vDominio[i].length == 0) {
-                                valorRetorno = false;
-                            }
-                        }
-                    }
-                }
-            }
-
-            let vCaracterNoPermitido = ['$', '%', '€', '*', '+', '-', ';', ',', '{', '}', '?', '/', '\"', '\'', '\\', '|', '/']; // Alguno más ....
-            for (let j = 0; ((j < vCaracterNoPermitido.length) && (valorRetorno != false)); j++) {
-                if (email.includes(vCaracterNoPermitido[j]) == true) {
-                    valorRetorno = false;
-                }
-            }
-
-            return valorRetorno;
-        }
-
-
     </script>
 </body>
 
