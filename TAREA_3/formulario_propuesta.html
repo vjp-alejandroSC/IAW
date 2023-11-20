@@ -225,9 +225,13 @@
 
             return valorRetorno;
         }
-
+        // Al pulsar el checkbox, deben autocompletarse los campos
         function precargar_datos() {
-
+            let contenidoNombre = document.getElementById("nombre").value;
+            let contenidoApellido = document.getElementById("apellidos").value;
+            let contenidoNIF = document.getElementById("nif").value;
+            let contenidoNumero = document.getElementById("telefono").value;
+            let contenidoMail = document.getElementById("correo").value;
         }
     </script>
 </body>
