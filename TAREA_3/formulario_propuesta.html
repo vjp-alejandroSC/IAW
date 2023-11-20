@@ -20,8 +20,7 @@
 
         <hr>
 
-        <label for="datos_economicos">Ocultar datos económicos</label><input type="checkbox" id="datos_economicos"
-            onchange="mostrarPresupuesto()">
+        <label for="datos_economicos">Ocultar datos económicos</label><input type="checkbox" id="datos_economicos" onchange="mostrarPresupuesto()" checked>
 
         <br><br>
 
@@ -31,18 +30,15 @@
 
         <fieldset>
             <legend>DATOS PERSONALES</legend>
-            <label for="nombre">Nombre </label><input type="text" name="nombre" id="nombre" value="" required><br><br>
+            <label for="nombre">Nombre </label><input type="text" name="nombre" id="nombre" value=""><br><br>
 
-            <label for="apellidos">Apellidos </label><input type="text" name="apellidos" id="apellidos" value=""
-                required><br><br>
+            <label for="apellidos">Apellidos </label><input type="text" name="apellidos" id="apellidos" value=""><br><br>
 
-            <label for="nif">NIF/CIF </label><input type="text" name="nif" id="nif" value="" required>
+            <label for="nif">NIF/CIF </label><input type="text" name="nif" id="nif" value="">
 
-            <label for="telefono">Teléfono </label><input type="text" name="telefono" id="telefono" value=""
-                required><br><br>
+            <label for="telefono">Teléfono </label><input type="text" name="telefono" id="telefono" value=""><br><br>
 
-            <label for="correo">Correo electrónico </label><input type="text" name="correo" id="correo" value=""
-                required><br><br>
+            <label for="correo">Correo electrónico </label><input type="text" name="correo" id="correo" value=""><br><br>
 
             <label for="precargar">Precargar datos</label>
 
@@ -60,8 +56,7 @@
 
         <fieldset>
             <legend>DESCRIPCION DE LA PROPUESTA</legend>
-            <textarea name="descripcion" id="descripcion" cols="120" rows="8"
-                placeholder="Breve descripción de la propuesta (por ejemplo, poner una fuente en Main St.)"></textarea>
+            <textarea name="descripcion" id="descripcion" cols="120" rows="8" placeholder="Breve descripción de la propuesta (por ejemplo, poner una fuente en Main St.)"></textarea>
         </fieldset>
 
         <br>
@@ -133,12 +128,106 @@
 
     </form>
     <script>
+
+        const SEPARADOR_EMAIL = '@';
+
+        function validarFormulario(){
+            if (validarTelefono()==false){
+                alert("El telefono introducido es incorrecto.");
+            }
+            if (validarDNI()==false){
+                alert("El DNI introducido es incorrecto.");
+            }
+            if (validarEmail()==false){
+                alert("El email es incorrecto")
+            }
+        }
+
+        //  Cuando el checkbox esté marcado, se ocultará la sección de 
+        // "PRESUPUESTOS DE LA PROPUESTA"
         function mostrarPresupuesto() {
             var presupuestoSection = document.getElementById("presupuesto-section");
             var checkbox = document.getElementById("datos_economicos");
 
-            // Si el checkbox está marcado, muestra la sección; de lo contrario, ocúltala
+            // Si el checkbox está marcado, muestra la sección; de lo contrario, la oculta
             presupuestoSection.style.display = checkbox.checked ? "none" : "block";
+        }
+
+        // Validamos que los campos que son obligatorios estén rellenados
+        function campos_obligatorios() {
+
+        }
+
+        // Validamos que el formato del DNI está correctamente escrito
+        function validarDNI() {
+            let valorRetorno = true;
+            let contenidoDNI = document.getElementById("nif").value;
+
+            // Validación del formato del DNI
+            const patronDNI = /^\d{8}([A-Z]||[a-z])$/;
+            if (patronDNI.test(contenidoDNI) == false) {
+                valorRetorno = false;
+            }
+
+            // Validación de la letra del DNI
+            let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+            let letraDNI = letras[contenidoDNI.substring(0, 8) % 23];
+            if (letraDNI != contenidoDNI.charAt(8)) {
+                valorRetorno = false;
+            }
+
+            return valorRetorno;
+        }
+
+        function validarTelefono() {
+            let valorRetorno = true;
+            let contenidoTelefono = document.getElementById("telefono").value;
+            const patronTlf = /^[6789]\d{8}$/;
+            if (patronTlf.test(contenidoTelefono) == false) {
+                valorRetorno = false;
+            }
+
+            return valorRetorno;
+        }
+
+        // Validamos que el formato del email está correctamente escrito
+        function validarEmail() {
+            let valorRetorno = true; // Consideramos que la @de correo es correcta
+            let email = (document.getElementById('correo').value).trim();
+            let vEmail = email.split('@');
+            if (vEmail.length != 2) {
+                valorRetorno = false;
+            } else {
+                let nombre = vEmail[0];
+                let dominio = vEmail[1];
+                if (nombre.length == 0) {
+                    valorRetorno = false;
+                } else {
+                    let vDominio = dominio.split('.');
+                    if (vDominio.length <= 1) {
+                        valorRetorno = false;
+                    } else {
+                        for (let i = 0; ((i < vDominio.length) && (valorRetorno != false)); i++) {
+                            if (vDominio[i].length == 0) {
+                                valorRetorno = false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            let vCaracterNoPermitido = ['$', '%', '€', '*', '+', '-', ';', ',', '{', '}', '?', '/', '\"', '\'', '\\', '|', '/']; // Alguno más ....
+            for (let j = 0; ((j < vCaracterNoPermitido.length) && (valorRetorno != false)); j++) {
+                if (email.includes(vCaracterNoPermitido[j]) == true) {
+                    valorRetorno = false;
+                }
+            }
+
+            return valorRetorno;
+        }
+
+        function precargar_datos() {
+
         }
     </script>
 </body>
