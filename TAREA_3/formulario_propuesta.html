@@ -10,6 +10,7 @@
 
 <body>
     <form action="" method="get" onsubmit="return validarFormulario();">
+
         <div id="imagen">
             <img src="../img/resources/Escudo_Plasencia.png" alt="">
         </div>
@@ -20,29 +21,38 @@
 
         <hr>
 
-        <label for="datos_economicos">Ocultar datos económicos</label><input type="checkbox" id="datos_economicos" onchange="mostrarPresupuesto()" checked>
-
+        <!-- Checkbox para ocultar los datos económicos o mostrarlos -->
+        <label for="datos_economicos">Ocultar datos económicos</label>
+        <input type="checkbox" id="datos_economicos_checkbox" onclick="mostrarPresupuesto();" checked>
         <br><br>
+
 
         <div id="gris">DATOS DE LA PROPUESTA</div>
 
-        <br><br>
+        <br>
+
 
         <fieldset>
             <legend>DATOS PERSONALES</legend>
-            <label for="nombre">Nombre </label><input type="text" name="nombre" id="nombre" value=""><br><br>
 
-            <label for="apellidos">Apellidos </label><input type="text" name="apellidos" id="apellidos" value=""><br><br>
+            <label for="nombre"><strong>Nombre</strong> </label>
+            <input type="text" name="nombre" id="nombre" value="" size="122"><br><br>
 
-            <label for="nif">NIF/CIF </label><input type="text" name="nif" id="nif" value="">
+            <label for="apellidos"><strong>Apellidos</strong> </label>
+            <input type="text" name="apellidos" id="apellidos" value="" size="121"><br><br>
 
-            <label for="telefono">Teléfono </label><input type="text" name="telefono" id="telefono" value=""><br><br>
+            <label for="nif"><strong>NIF/CIF</strong> </label>
+            <input type="text" name="nif" id="nif" value="" size="60">
 
-            <label for="correo">Correo electrónico </label><input type="text" name="correo" id="correo" value=""><br><br>
+            <label for="telefono"><strong>Teléfono</strong> </label>
+            <input type="text" name="telefono" id="telefono" value="" size="46"><br><br>
 
-            <label for="precargar">Precargar datos</label>
+            <label for="correo"><strong>Correo electrónico</strong> </label>
+            <input type="text" name="correo" id="correo" value="" size="112"><br><br>
 
-            <input type="checkbox" id="precargar">
+            <label for="precargar"><strong>Precargar datos</strong> </label>
+            <input type="checkbox" id="precargar" onchange="precargar_datos();">
+
         </fieldset>
 
         <br>
@@ -63,56 +73,81 @@
 
         <fieldset>
             <legend>DESTINATARIOS</legend>
-            <label for="ninos">Niños</label><input type="radio" name="ninos" id="ninos">
-            <label for="jovenes">Jovenes</label><input type="radio" name="jovenes" id="jovenes">
-            <label for="ancianos">Ancianos</label><input type="radio" name="ancianos" id="ancianos">
+
+            <label for="ninos">Niños</label>
+            <input type="radio" name="ninos" id="ninos">
+
+            <label for="jovenes">Jovenes</label>
+            <input type="radio" name="jovenes" id="jovenes">
+
+            <label for="ancianos">Ancianos</label>
+            <input type="radio" name="ancianos" id="ancianos">
+
         </fieldset>
 
         <br>
 
         <fieldset>
             <legend>BENEFICIOS DE LA PROPUESTA</legend>
-            <input type="checkbox" name="infraestructuras" id="infraestructuras"><label for="infraestructuras">Mejora de
-                las infraestructuras del municipio</label>
-            <input type="checkbox" name="demanda" id="demanda"><label for="demanda">Alta demanda</label>
+
+            <input type="checkbox" name="infraestructuras" id="infraestructuras">
+            <label for="infraestructuras">Mejora de las infraestructuras del municipio</label>
+
+            <input type="checkbox" name="demanda" id="demanda">
+            <label for="demanda">Alta demanda</label>
 
             <br><br>
 
-            <input type="checkbox" name="urbanistica" id="urbanistica"><label for="urbanistica">Mejora de la estructura
-                urbanística del municipio</label>
-            <input type="checkbox" name="turistica" id="turistica"><label for="turistica">Mejora de la estructura
-                turística del municipio</label>
+            <input type="checkbox" name="urbanistica" id="urbanistica">
+            <label for="urbanistica">Mejora de la estructura urbanística del municipio</label>
+
+            <input type="checkbox" name="turistica" id="turistica">
+            <label for="turistica">Mejora de la estructura turística del municipio</label>
 
             <br><br>
 
-            <input type="checkbox" name="otro" id="otro"><input type="text" name="otro" id="otro"
-                placeholder="Cualquier otro beneficio..." size="100">
+            <input type="checkbox" name="otro" id="otro">
+            <input type="text" name="otro" id="otro" placeholder="Cualquier otro beneficio..." size="100">
+
         </fieldset>
 
         <br>
 
-        <fieldset id="presupuesto-section">
+        <fieldset id="presupuesto_propuesta">
             <legend>PRESUPUESTOS DE LA PROPUESTA</legend>
-            <input type="radio" name="presupuesto" id="menosmil"><label for="menosmil">Menos de 1000€</label>
-            <input type="radio" name="presupuesto" id="milacinco"><label for="milacinco">De 1000 a 5000€</label>
-            <input type="radio" name="presupuesto" id="cincoadiez"><label for="cincoadiez">De 5000 a 10000€</label>
+
+            <input type="radio" name="presupuesto" id="menosmil">
+            <label for="menosmil">Menos de 1000€</label>
+
+            <input type="radio" name="presupuesto" id="milacinco">
+            <label for="milacinco">De 1000 a 5000€</label>
+
+            <input type="radio" name="presupuesto" id="cincoadiez">
+            <label for="cincoadiez">De 5000 a 10000€</label>
+
         </fieldset>
 
         <br>
 
         <fieldset>
             <legend>DURACIÓN DE LA PROPUESTA</legend>
-            <label for="fechainicio">Fecha de inicio de la propuesta</label> <input type="date" name="fechainicio"
-                id="fechainicio">
-            <label for="fechafin">Fecha de fin de la propuesta</label> <input type="date" name="fechafin" id="fechafin">
+
+            <label for="fechainicio">Fecha de inicio de la propuesta</label>
+            <input type="date" name="fechainicio" id="fechainicio">
+
+            <label for="fechafin">Fecha de fin de la propuesta</label>
+            <input type="date" name="fechafin" id="fechafin">
+
         </fieldset>
 
         <br>
 
         <fieldset>
             <legend>DOCUMENTACIÓN APORTADA</legend>
+
             <p>Puede añadir fotos o cualquier otro documento que estime oportuno para la propuesta</p>
             <input type="file" name="archivo" id="archivo">
+
         </fieldset>
 
         <hr>
@@ -131,31 +166,19 @@
 
         const SEPARADOR_EMAIL = '@';
 
-        function validarFormulario(){
-            if (validarTelefono()==false){
+        function validarFormulario() {
+            if (validarTelefono() == false) {
                 alert("El telefono introducido es incorrecto.");
             }
-            if (validarDNI()==false){
+            if (validarDNI() == false) {
                 alert("El DNI introducido es incorrecto.");
             }
-            if (validarEmail()==false){
+            if (validarEmail() == false) {
                 alert("El email es incorrecto")
             }
-        }
-
-        //  Cuando el checkbox esté marcado, se ocultará la sección de 
-        // "PRESUPUESTOS DE LA PROPUESTA"
-        function mostrarPresupuesto() {
-            var presupuestoSection = document.getElementById("presupuesto-section");
-            var checkbox = document.getElementById("datos_economicos");
-
-            // Si el checkbox está marcado, muestra la sección; de lo contrario, la oculta
-            presupuestoSection.style.display = checkbox.checked ? "none" : "block";
-        }
-
-        // Validamos que los campos que son obligatorios estén rellenados
-        function campos_obligatorios() {
-
+            if (campos_obligatorios() == false){
+                alert("RELLENE TODOS LOS CAMPOS OBLIGATORIOS");
+            }
         }
 
         // Validamos que el formato del DNI está correctamente escrito
@@ -192,7 +215,7 @@
 
         // Validamos que el formato del email está correctamente escrito
         function validarEmail() {
-            let valorRetorno = true; // Consideramos que la @de correo es correcta
+            let valorRetorno = true; // Consideramos que la @ de correo es correcta
             let email = (document.getElementById('correo').value).trim();
             let vEmail = email.split('@');
             if (vEmail.length != 2) {
@@ -200,7 +223,7 @@
             } else {
                 let nombre = vEmail[0];
                 let dominio = vEmail[1];
-                if (nombre.length == 0) {
+                if (nombre.length == "") {
                     valorRetorno = false;
                 } else {
                     let vDominio = dominio.split('.');
@@ -208,7 +231,7 @@
                         valorRetorno = false;
                     } else {
                         for (let i = 0; ((i < vDominio.length) && (valorRetorno != false)); i++) {
-                            if (vDominio[i].length == 0) {
+                            if (vDominio[i].length == "") {
                                 valorRetorno = false;
                             }
                         }
@@ -227,16 +250,104 @@
         }
         // Al pulsar el checkbox, deben autocompletarse los campos
         function precargar_datos() {
-            let contenidoNombre = document.getElementById("nombre").value;
-            let contenidoApellido = document.getElementById("apellidos").value;
-            let contenidoNIF = document.getElementById("nif").value;
-            let contenidoNumero = document.getElementById("telefono").value;
-            let contenidoMail = document.getElementById("correo").value;
 
-            let vInfo = [contenidoNombre, contenidoApellido, contenidoNIF, contenidoNumero, contenidoMail];
+            var checkbox = document.getElementById("precargar");
+
+            if (checkbox.checked) {
+                let contenidoNombre = document.getElementById("nombre").value = "Alejandro";
+                let contenidoApellido = document.getElementById("apellidos").value = "Sanchez Collado";
+                let contenidoNIF = document.getElementById("nif").value = "54619317K";
+                let contenidoNumero = document.getElementById("telefono").value = "664113320";
+                let contenidoMail = document.getElementById("correo").value = "asanchezc168@gmail.com";
+            } else {
+                let contenidoNombre = document.getElementById("nombre").value = "";
+                let contenidoApellido = document.getElementById("apellidos").value = "";
+                let contenidoNIF = document.getElementById("nif").value = "";
+                let contenidoNumero = document.getElementById("telefono").value = "";
+                let contenidoMail = document.getElementById("correo").value = "";
+            }
+        }
+
+        //  Cuando el checkbox esté marcado, se ocultará la sección de 
+        // "PRESUPUESTOS DE LA PROPUESTA"
+        function mostrarPresupuesto() {
+            let checkbox = document.getElementById("datos_economicos_checkbox");
+            let seccionPresupuesto = document.getElementById("presupuesto_propuesta");
+
+            if (checkbox.checked) {
+                seccionPresupuesto.style.display = "none";
+            } else {
+                seccionPresupuesto.style.display = "block"
+            }
+        }
+
+        mostrarPresupuesto();
+
+        // Validamos que los campos que son obligatorios estén rellenados
+        function campos_obligatorios() {
+            let valorRetorno = true;
+            // Son obligatorios DATOS PERSONALES, TITULO DE LA PROPUESTA, DESCRIPCION DE LA
+            // PROPUESTA, DESTINATARIOS, BENEFICIOS DE LA PROPUESTA, DURACIÓN DE LA PROPUESTA
+
+            let campoNombre = document.getElementById("nombre").value;
+            let campoApellido = document.getElementById("apellidos").value;
+            let campoNIF = document.getElementById("nif").value;
+            let campoTelefono = document.getElementById("telefono").value;
+            let campoMail = document.getElementById("correo").value;
+            let campoTitulo = document.getElementById("titulo").value;
+            let campoDescripcion = document.getElementById("descripcion").value;
+            let campoNinos = document.getElementById("ninos").value;
+            let campoJovenes = document.getElementById("jovenes").value;
+            let campoAncianos = document.getElementById("ancianos").value;
+            // let campoBeneficios = document.getElementById("").value;
+            // let campoDuracion = document.getElementById("").value;
 
             
+            if (campoNombre === "") {
+                alert("El campo nombre es obligatorio.");
+            }
+            
+            if (campoApellido === "") {
+                alert("El campo apellido es obligatorio");
+            }
+            
+            if (campoNIF === "") {
+                alert("El campo NIF/CIF es obligatorio");
+            }
 
+            if (campoTelefono === "") {
+                alert("El campo teléfono es obligatorio");
+            }
+
+            if (campoMail === "") {
+                alert("El campo correo electrónico es obligatorio.");
+            }
+            
+            if (campoTitulo === "") {
+                alert("El campo título es obligatorio");
+            }
+
+            if (campoDescripcion === "") {
+                alert("El campo descripción es obligatorio");
+            }
+            
+            if (campoNino.checked && campoJovenes.checked && campoAncianos.checked) {
+                alert("Seleccione niños, jovenes o ancianos en el apartado \"Destinatarios\"");
+            }
+
+            if (campoDestinatario === "") {
+                alert("El campo destinatario es obligatorio");
+            }
+
+            if (campoBeneficios === "") {
+                alert("El campo beneficios es obligatorio");
+            }
+
+            if (campoDuracion === "") {
+                alert("El campo duración es obligatorio");
+            }
+
+            return valorRetorno;
         }
     </script>
 </body>
