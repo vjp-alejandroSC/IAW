@@ -1,6 +1,7 @@
 html{
     width: max-content;
     margin: auto;
+    font-weight: bolder;
 }
 
 #imagen img {
@@ -21,7 +22,7 @@ h1 {
 }
 
 fieldset:nth-of-type(1) label:nth-of-type(6) {
-    margin-left: 775px;
+    margin-left: 710px;
 }
 
 p {
@@ -35,5 +36,23 @@ hr {
 }
 
 #enviar {
-    margin-left: 82%;
+    margin-left: 80%;
+}
+
+#fieldset-destinatarios label:nth-of-type(1),
+#fieldset-destinatarios label:nth-of-type(2) {
+    margin-right: 200px;
+}
+
+#demanda {
+    margin-left: 39px;
+}
+
+#presupuesto_propuesta label:nth-of-type(1),
+#presupuesto_propuesta label:nth-of-type(2) {
+    margin-right: 100px;
+}
+
+#fieldset-duracion input:nth-of-type(1) {
+    margin-right: 100px;
 }

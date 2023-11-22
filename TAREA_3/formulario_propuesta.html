@@ -35,22 +35,22 @@
         <fieldset>
             <legend>DATOS PERSONALES</legend>
 
-            <label for="nombre"><strong>Nombre</strong> </label>
-            <input type="text" name="nombre" id="nombre" value="" size="122"><br><br>
+            <label for="nombre">Nombre </label>
+            <input type="text" name="nombre" id="nombre" value="" size="107"><br><br>
 
-            <label for="apellidos"><strong>Apellidos</strong> </label>
-            <input type="text" name="apellidos" id="apellidos" value="" size="121"><br><br>
+            <label for="apellidos">Apellidos </label>
+            <input type="text" name="apellidos" id="apellidos" value="" size="106"><br><br>
 
-            <label for="nif"><strong>NIF/CIF</strong> </label>
-            <input type="text" name="nif" id="nif" value="" size="60">
+            <label for="nif">NIF/CIF </label>
+            <input type="text" name="nif" id="nif" value="" size="50">
 
-            <label for="telefono"><strong>Teléfono</strong> </label>
-            <input type="text" name="telefono" id="telefono" value="" size="46"><br><br>
+            <label for="telefono">Teléfono </label>
+            <input type="text" name="telefono" id="telefono" value="" size="41"><br><br>
 
-            <label for="correo"><strong>Correo electrónico</strong> </label>
-            <input type="text" name="correo" id="correo" value="" size="112"><br><br>
+            <label for="correo">Correo electrónico </label>
+            <input type="text" name="correo" id="correo" value="" size="96"><br><br>
 
-            <label for="precargar"><strong>Precargar datos</strong> </label>
+            <label for="precargar">Precargar datos </label>
             <input type="checkbox" id="precargar" onchange="precargar_datos();">
 
         </fieldset>
@@ -59,29 +59,29 @@
 
         <fieldset>
             <legend>TITULO DE LA PROPUESTA</legend>
-            <textarea name="titulo" id="titulo" cols="120" rows="2"></textarea>
+            <textarea name="titulo" id="titulo" cols="112" rows="2"></textarea>
         </fieldset>
 
         <br>
 
         <fieldset>
             <legend>DESCRIPCION DE LA PROPUESTA</legend>
-            <textarea name="descripcion" id="descripcion" cols="120" rows="8" placeholder="Breve descripción de la propuesta (por ejemplo, poner una fuente en Main St.)"></textarea>
+            <textarea name="descripcion" id="descripcion" cols="112" rows="6" placeholder="Breve descripción de la propuesta (por ejemplo, poner una fuente en Main St.)"></textarea>
         </fieldset>
 
         <br>
 
-        <fieldset>
+        <fieldset id="fieldset-destinatarios">
             <legend>DESTINATARIOS</legend>
 
-            <label for="ninos">Niños</label>
             <input type="checkbox" name="ninos" id="ninos">
+            <label for="ninos">Niños</label>
 
-            <label for="jovenes">Jovenes</label>
             <input type="checkbox" name="jovenes" id="jovenes">
+            <label for="jovenes">Jovenes</label>
 
-            <label for="ancianos">Ancianos</label>
             <input type="checkbox" name="ancianos" id="ancianos">
+            <label for="ancianos">Ancianos</label>
 
         </fieldset>
 
@@ -107,7 +107,7 @@
             <br><br>
 
             <input type="checkbox" name="checkboxOtro" id="checkboxOtro">
-            <input type="text" name="inputOtro" id="inputOtro" placeholder="Cualquier otro beneficio..." size="100">
+            <input type="text" name="inputOtro" id="inputOtro" placeholder="Cualquier otro beneficio..." size="112">
 
         </fieldset>
 
@@ -129,7 +129,7 @@
 
         <br>
 
-        <fieldset>
+        <fieldset id="fieldset-duracion">
             <legend>DURACIÓN DE LA PROPUESTA</legend>
 
             <label for="fechainicio">Fecha de inicio de la propuesta</label>
@@ -167,16 +167,16 @@
         const SEPARADOR_EMAIL = '@';
 
         function validarFormulario() {
+            if (campos_obligatorios() == false){
+            }
             if (validarTelefono() == false) {
-                alert("El telefono introducido es incorrecto.");
+                alert("El formato del telefono introducido es incorrecto.");
             }
             if (validarDNI() == false) {
-                alert("El DNI introducido es incorrecto.");
+                alert("El formato del DNI introducido es incorrecto.");
             }
             if (validarEmail() == false) {
-                alert("El email es incorrecto")
-            }
-            if (campos_obligatorios() == false){
+                alert("El formato del correo electrónico es incorrecto")
             }
         }
 
