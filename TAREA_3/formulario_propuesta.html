@@ -75,13 +75,13 @@
             <legend>DESTINATARIOS</legend>
 
             <label for="ninos">Niños</label>
-            <input type="radio" name="ninos" id="ninos">
+            <input type="checkbox" name="ninos" id="ninos">
 
             <label for="jovenes">Jovenes</label>
-            <input type="radio" name="jovenes" id="jovenes">
+            <input type="checkbox" name="jovenes" id="jovenes">
 
             <label for="ancianos">Ancianos</label>
-            <input type="radio" name="ancianos" id="ancianos">
+            <input type="checkbox" name="ancianos" id="ancianos">
 
         </fieldset>
 
@@ -177,7 +177,6 @@
                 alert("El email es incorrecto")
             }
             if (campos_obligatorios() == false){
-                alert("RELLENE TODOS LOS CAMPOS OBLIGATORIOS");
             }
         }
 
@@ -289,20 +288,35 @@
             // Son obligatorios DATOS PERSONALES, TITULO DE LA PROPUESTA, DESCRIPCION DE LA
             // PROPUESTA, DESTINATARIOS, BENEFICIOS DE LA PROPUESTA, DURACIÓN DE LA PROPUESTA
 
+            // DATOS PERSONALES
             let campoNombre = document.getElementById("nombre").value;
             let campoApellido = document.getElementById("apellidos").value;
             let campoNIF = document.getElementById("nif").value;
             let campoTelefono = document.getElementById("telefono").value;
             let campoMail = document.getElementById("correo").value;
+
+            // TITULO DE LA PROPUESTA
             let campoTitulo = document.getElementById("titulo").value;
+
+            // DESCRIPCIÓN DE LA PROPUESTA
             let campoDescripcion = document.getElementById("descripcion").value;
+
+            // DESTINATARIOS
             let campoNinos = document.getElementById("ninos");
             let campoJovenes = document.getElementById("jovenes");
             let campoAncianos = document.getElementById("ancianos");
-            // let campoBeneficios = document.getElementById("").value;
-            // let campoDuracion = document.getElementById("").value;
 
+            // BENEFICIOS DE LA PROPUESTA
+            let campoInfraestructuras = document.getElementById("infraestructuras");
+            let campoDemanda = document.getElementById("demanda");
+            let campoUrbanistica = document.getElementById("urbanistica");
+            let campoTuristica = document.getElementById("turistica");
+            let campoCheckOtro = document.getElementById("checkboxOtro");
+            let campoInputOtro = document.getElementById("inputOtro");
             
+            // DURACIÓN DE LA PROPUESTA
+
+
             if (campoNombre === "") {
                 alert("El campo nombre es obligatorio.");
                 valorRetorno = false;
@@ -343,10 +357,14 @@
                 valorRetorno = false;
             }
 
-            // if (campoBeneficios === "") {
-            //     alert("El campo beneficios es obligatorio");
-            //     valorRetorno = false;
-            // }
+            if (!campoInfraestructuras.checked && !campoDemanda.checked && !campoUrbanistica.checked && !campoTuristica.checked) {
+                alert("El apartado beneficios de la propuesta es obligatorio");
+                valorRetorno = false;
+                if (campoCheckOtro.checked && campoInputOtro.value === "") {
+                    alert("El campo 'Cualquier otro beneficio' es obligatorio cuando se selecciona 'Otro beneficio'");
+                    valorRetorno = false;
+                }
+            }            
 
             // if (campoDuracion === "") {
             //     alert("El campo duración es obligatorio");
