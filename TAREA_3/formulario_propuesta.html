@@ -315,61 +315,82 @@
             let campoInputOtro = document.getElementById("inputOtro");
             
             // DURACIÓN DE LA PROPUESTA
+            let campoFechaInicio = document.getElementById("fechainicio").value;
+            let campoFechaFin = document.getElementById("fechafin").value;
 
-
+            // CONTROL DEL CAMPO NOMBRE
             if (campoNombre === "") {
                 alert("El campo nombre es obligatorio.");
                 valorRetorno = false;
             }
             
+
+            // CONTROL DEL CAMPO APELLIDO
             if (campoApellido === "") {
                 alert("El campo apellido es obligatorio");
                 valorRetorno = false;
             }
             
+
+            // CONTROL DEL CAMPO NIF/CIF
             if (campoNIF === "") {
                 alert("El campo NIF/CIF es obligatorio");
                 valorRetorno = false;
             }
 
+
+            // CONTROL DEL CAMPO TELEFONO
             if (campoTelefono === "") {
                 alert("El campo teléfono es obligatorio");
                 valorRetorno = false;
             }
 
+
+            // CONTROL DEL CAMPO EMAIL
             if (campoMail === "") {
                 alert("El campo correo electrónico es obligatorio.");
                 valorRetorno = false;
             }
             
+
+            // CONTROL DEL CAMPO TITULO
             if (campoTitulo === "") {
                 alert("El campo título es obligatorio");
                 valorRetorno = false;
             }
 
+
+            // CONTROL DEL CAMPO DESCRIPCION
             if (campoDescripcion === "") {
                 alert("El campo descripción es obligatorio");
                 valorRetorno = false;
             }
             
+
+            // CONTROL DEL APARTADO DESTINATARIOS
             if (!campoNinos.checked && !campoJovenes.checked && !campoAncianos.checked) {
                 alert("Seleccione niños, jóvenes o ancianos en el apartado \"Destinatarios\"");
                 valorRetorno = false;
             }
 
-            if (!campoInfraestructuras.checked && !campoDemanda.checked && !campoUrbanistica.checked && !campoTuristica.checked) {
+            // CONTROL EN EL APARTADO BENEFICIOS DE LA PROPUESTA
+            
+            // En este primer IF, compruebo que los checkboxes están todos desmarcados.
+            if (!campoInfraestructuras.checked && !campoDemanda.checked && !campoUrbanistica.checked && !campoTuristica.checked && !campoCheckOtro.checked) {
                 alert("El apartado beneficios de la propuesta es obligatorio");
                 valorRetorno = false;
-                if (campoCheckOtro.checked && campoInputOtro.value === "") {
-                    alert("El campo 'Cualquier otro beneficio' es obligatorio cuando se selecciona 'Otro beneficio'");
-                    valorRetorno = false;
-                }
-            }            
+            }
 
-            // if (campoDuracion === "") {
-            //     alert("El campo duración es obligatorio");
-            //     valorRetorno = false;
-            // }
+            // En este segundo IF si el checkbox "Cualquier otro beneficio" está marcado, compruebo si el input asociado está vacío.
+            if (campoCheckOtro.checked && campoInputOtro.value === "") {
+                alert("El campo 'Cualquier otro beneficio' es obligatorio rellenarlo cuando es seleccionado.");
+                valorRetorno = false;
+            }
+
+            // CONTROL DEL APARTADO DURACIÓN DE LA PROPUESTA.
+            if (campoFechaInicio === "" || campoFechaFin === ""){
+                alert("Por favor, introduzca una fecha de inicio y una de fin, este campo es obligatorio.");
+            }
 
             return valorRetorno;
         }
