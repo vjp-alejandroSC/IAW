@@ -106,8 +106,8 @@
 
             <br><br>
 
-            <input type="checkbox" name="otro" id="otro">
-            <input type="text" name="otro" id="otro" placeholder="Cualquier otro beneficio..." size="100">
+            <input type="checkbox" name="checkboxOtro" id="checkboxOtro">
+            <input type="text" name="inputOtro" id="inputOtro" placeholder="Cualquier otro beneficio..." size="100">
 
         </fieldset>
 
@@ -296,56 +296,62 @@
             let campoMail = document.getElementById("correo").value;
             let campoTitulo = document.getElementById("titulo").value;
             let campoDescripcion = document.getElementById("descripcion").value;
-            let campoNinos = document.getElementById("ninos").value;
-            let campoJovenes = document.getElementById("jovenes").value;
-            let campoAncianos = document.getElementById("ancianos").value;
+            let campoNinos = document.getElementById("ninos");
+            let campoJovenes = document.getElementById("jovenes");
+            let campoAncianos = document.getElementById("ancianos");
             // let campoBeneficios = document.getElementById("").value;
             // let campoDuracion = document.getElementById("").value;
 
             
             if (campoNombre === "") {
                 alert("El campo nombre es obligatorio.");
+                valorRetorno = false;
             }
             
             if (campoApellido === "") {
                 alert("El campo apellido es obligatorio");
+                valorRetorno = false;
             }
             
             if (campoNIF === "") {
                 alert("El campo NIF/CIF es obligatorio");
+                valorRetorno = false;
             }
 
             if (campoTelefono === "") {
                 alert("El campo teléfono es obligatorio");
+                valorRetorno = false;
             }
 
             if (campoMail === "") {
                 alert("El campo correo electrónico es obligatorio.");
+                valorRetorno = false;
             }
             
             if (campoTitulo === "") {
                 alert("El campo título es obligatorio");
+                valorRetorno = false;
             }
 
             if (campoDescripcion === "") {
                 alert("El campo descripción es obligatorio");
+                valorRetorno = false;
             }
             
-            if (campoNino.checked && campoJovenes.checked && campoAncianos.checked) {
-                alert("Seleccione niños, jovenes o ancianos en el apartado \"Destinatarios\"");
+            if (!campoNinos.checked && !campoJovenes.checked && !campoAncianos.checked) {
+                alert("Seleccione niños, jóvenes o ancianos en el apartado \"Destinatarios\"");
+                valorRetorno = false;
             }
 
-            if (campoDestinatario === "") {
-                alert("El campo destinatario es obligatorio");
-            }
+            // if (campoBeneficios === "") {
+            //     alert("El campo beneficios es obligatorio");
+            //     valorRetorno = false;
+            // }
 
-            if (campoBeneficios === "") {
-                alert("El campo beneficios es obligatorio");
-            }
-
-            if (campoDuracion === "") {
-                alert("El campo duración es obligatorio");
-            }
+            // if (campoDuracion === "") {
+            //     alert("El campo duración es obligatorio");
+            //     valorRetorno = false;
+            // }
 
             return valorRetorno;
         }
