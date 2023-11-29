@@ -18,33 +18,45 @@
     </div>
 
     <script>
+        // Declaración de variables
         var a = 7, b = 3;
+    
         /*
         Función para incluir contenido dinámico en el DOM de HTML
         */
-        function operar(){
-             if (document.getElementById("nuevo-parrafo-id")==null){
-                var parrafoResultado=document.createElement('p') // Creación del elemento p
+        function operar() {
+            // Verifica si ya existe un elemento con el ID "nuevo-parrafo-id"
+            if (document.getElementById("nuevo-parrafo-id") == null) {
+                // Crea un nuevo elemento "p" (párrafo)
+                var parrafoResultado = document.createElement('p');
+                
+                // Asigna el ID "nuevo-parrafo-id" al nuevo párrafo
                 parrafoResultado.setAttribute("id", "nuevo-parrafo-id");
-                var resultado=a+b;
-                var text=document.createTextNode("El resultado de sumar " + a + " y " + b + " es: " + resultado) // Creación de un texto
-                parrafoResultado.appendChild(text); // Añadimos el texto al elemento p
-                document.getElementById("seccion-operaciones-id").appendChild(parrafoResultado); // Añadimos el elemento "p" al "div"  
+    
+                // Realiza una operación aritmética (en este caso, suma)
+                var resultado = a + b;
+    
+                // Crea un nodo de texto con el resultado de la operación
+                var text = document.createTextNode("El resultado de sumar " + a + " y " + b + " es: " + resultado);
+    
+                // Añade el nodo de texto al elemento "p"
+                parrafoResultado.appendChild(text);
+    
+                // Añade el elemento "p" al elemento con el ID "seccion-operaciones-id"
+                document.getElementById("seccion-operaciones-id").appendChild(parrafoResultado);
             }
-            
         }
-
-        function limpiar(){
-            if(document.getElementById("nuevo-parrafo-id")!=null){
+    
+        // Función para limpiar el contenido generado dinámicamente
+        function limpiar() {
+            // Verifica si existe un elemento con el ID "nuevo-parrafo-id"
+            if (document.getElementById("nuevo-parrafo-id") != null) {
+                // Elimina el elemento "p" con el ID "nuevo-parrafo-id" del DOM
                 document.getElementById("seccion-operaciones-id").removeChild(
                     document.getElementById("nuevo-parrafo-id")
                 );
             }
-        
         }
-
     </script>
-
-
 </body>
 </html>
