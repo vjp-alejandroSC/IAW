@@ -1,72 +1,80 @@
 <html>
-    <head>
-        <title>POO</title>
-    </head>
-    <body>
-        <p id="parrafo"></p>
-        <p id="parrafo_2"></p>
 
-        <script>
-            /*
-            // Función constructora del objeto Superheroe
-            // "this" hace referencia al objeto actual que se está construyendo
-            function Superheroe(nombre, apellido, alias, peso, altura){
-                this.nombre=nombre;
-                this.apellido=apellido;
-                this.alias=alias;
-                this.peso=peso;
-                this.altura=altura;
-            };
+<head>
+    <title>POO</title>
+</head>
 
-            // new guarda en memoria un espacio y guarda dentro los parámetros que le pasemos nosotros
-            Superheroe.prototype.mostrar=function(){
-                return "Mi nombre es: " + this.nombre + ", " + this.apellido + ", " + this.alias;
+<body>
+    <p id="parrafo"></p>
+    <p id="parrafo_2"></p>
+
+    <script>
+        /*
+        // Función constructora del objeto Superheroe
+        // "this" hace referencia al objeto actual que se está construyendo
+        function Superheroe(nombre, apellido, alias, peso, altura){
+            this.nombre=nombre;
+            this.apellido=apellido;
+            this.alias=alias;
+            this.peso=peso;
+            this.altura=altura;
+        };
+
+        // new guarda en memoria un espacio y guarda dentro los parámetros que le pasemos nosotros
+        Superheroe.prototype.mostrar=function(){
+            return "Mi nombre es: " + this.nombre + ", " + this.apellido + ", " + this.alias;
+        }
+        let spider_man = new Superheroe('Peter', 'Parker', 'Spiderman', 85, 190);
+        let hulk= new Superheroe('Bruce', 'Banner', 'Hulk', 522, 300);
+        document.getElementById("parrafo").innerHTML=spider_man.mostrar();
+        */
+
+        // Definición de la clase Superheroe
+        class Superheroe {
+            // Constructor de la clase
+            constructor(nombre, apellido) {
+                this.nombre = nombre;
+                this.apellido = apellido;
             }
-            let spider_man = new Superheroe('Peter', 'Parker', 'Spiderman', 85, 190);
-            let hulk= new Superheroe('Bruce', 'Banner', 'Hulk', 522, 300);
-            document.getElementById("parrafo").innerHTML=spider_man.mostrar();
-            */
 
-        	class Superheroe{
-                // Atributos
-                nombre;
-                apellido;
-                alias;
-                altura;
-                peso;
-                edad;
+            // Método para establecer el nombre del superhéroe
+            setNombre(nuevoNombre) {
+                this.nombre = nuevoNombre;
+            }
 
-                // Funcionalidad
-                constructor(nombre, apellido, edad){
-                    this.nombre=nombre;
-                    this.apellido=apellido;
-                    this.edad=edad;
-                }
+            // Método para establecer la altura del superhéroe
+            setAltura(nuevaAltura) {
+                this.altura = nuevaAltura;
+            }
 
-                toString(){
-                    return "Mi nombre es: " + this.nombre + ", " + this.apellido;
-                }
+            // Método para establecer la edad del superhéroe
+            setEdad(nuevaEdad) {
+                this.edad = nuevaEdad;
+            }
 
-                setAltura(altura){
-                    this.altura=altura;
-                }
+            // Método para representar el objeto como una cadena de texto
+            toString() {
+                return "Superhéroe: " + this.nombre + " " + this.apellido +
+                    ", Altura: " + this.altura + ", Edad: " + this.edad;
+            }
+        }
 
-                setNombre(nombre){
-                    this.nombre=nombre;
-                }
+        // Creación de una instancia de la clase Superheroe llamada "flash"
+        var flash = new Superheroe("Barry", "Allen");
 
-                setEdad(edad){
-                    this.edad=edad;
-                }
-            };
+        // Creación de otra instancia de la clase Superheroe llamada "batman"
+        var batman = new Superheroe("Bruce", "Wayne");
 
-            var flash = new Superheroe("Barry", "Allen");
-            var batman = new Superheroe("Bruce", "Wayne")
-            batman.setNombre("Anthony");
-            batman.setAltura(190);
-            batman.setEdad(32);
-            document.getElementById("parrafo").innerHTML=flash.toString();
-            document.getElementById("parrafo_2").innerHTML=batman.toString();
-        </script>
-    </body>
+        // Modificación de propiedades de la instancia "batman"
+        batman.setNombre("Anthony");
+        batman.setAltura(190);
+        batman.setEdad(32);
+
+        // Mostrar información en elementos HTML
+        document.getElementById("parrafo").innerHTML = flash.toString();
+        document.getElementById("parrafo_2").innerHTML = batman.toString();
+
+    </script>
+</body>
+
 </html>
