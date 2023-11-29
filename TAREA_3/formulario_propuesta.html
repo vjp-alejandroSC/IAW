@@ -215,21 +215,34 @@
         // Validamos que el formato del email está correctamente escrito
         function validarEmail() {
             let valorRetorno = true; // Consideramos que la @ de correo es correcta
-            let email = (document.getElementById('correo').value).trim();
-            let vEmail = email.split('@');
-            if (vEmail.length != 2) {
+            let email = (document.getElementById('correo').value).trim(); /* Guardamos en "email" el correo introducido, eliminando los espacios
+                                                                             en blanco por delante y por detrás. */
+
+            let vEmail = email.split('@'); // Dividimos el email por el @. Nos quedaría:  nombre@dominio --> ["nombre", "dominio"]
+
+            if (vEmail.length != 2) { /* Si la longitud del array vEmail es distinta de dos, es decir, o falta el nombre o falta el dominio,
+                                         no es correcto e igualo el valorRetorno a false. */
                 valorRetorno = false;
-            } else {
+            } else { 
+                // Si no, tenemos un nombre y un dominio aparentemente correctos. Igualo las posiciones del array a nombre y dominio.
                 let nombre = vEmail[0];
                 let dominio = vEmail[1];
+                
+                // Si el nombre es un espacio o algo parecido, es incorrecto
                 if (nombre.length == "") {
                     valorRetorno = false;
                 } else {
-                    let vDominio = dominio.split('.');
-                    if (vDominio.length <= 1) {
+                    // Si no, tenemos un nombre aparentemente correcto.
+                    let vDominio = dominio.split('.'); // Comprobamos que el dominio también es correcto dividiendolo por el "." .
+                    
+                    // Si la longitud del array es menor o igual a 1, es decir, solo hay un dominio sin subdominio, es incorrecto
+                    if (vDominio.length <= 1) { // Ejemplo: alejandro@gmail. Otro ejemplo: alejandro@.
                         valorRetorno = false;
                     } else {
+                    // Si no, recorro el array vDominio con la condición de que "i" sea menor
+                    // que la longitud del array y que valorRetorno previamente no haya sido false.
                         for (let i = 0; ((i < vDominio.length) && (valorRetorno != false)); i++) {
+                            // Estando dentro del array, compruebo que ninguno de los subdominios o dominio esté vacío.
                             if (vDominio[i].length == "") {
                                 valorRetorno = false;
                             }
@@ -240,6 +253,7 @@
 
             let vCaracterNoPermitido = ['$', '%', '€', '*', '+', '-', ';', ',', '{', '}', '?', '/', '\"', '\'', '\\', '|', '/']; // Alguno más ....
             for (let j = 0; ((j < vCaracterNoPermitido.length) && (valorRetorno != false)); j++) {
+                // Con este if, compruebo que si en el email hay alguno de los caracteres no permitidos, sea incorrecto
                 if (email.includes(vCaracterNoPermitido[j]) == true) {
                     valorRetorno = false;
                 }
@@ -253,12 +267,14 @@
             var checkbox = document.getElementById("precargar");
 
             if (checkbox.checked) {
+                // Cuando esté chequeado aparecen los datos indicados entre comillas.
                 let contenidoNombre = document.getElementById("nombre").value = "Alejandro";
                 let contenidoApellido = document.getElementById("apellidos").value = "Sanchez Collado";
                 let contenidoNIF = document.getElementById("nif").value = "54619317K";
                 let contenidoNumero = document.getElementById("telefono").value = "664113320";
                 let contenidoMail = document.getElementById("correo").value = "asanchezc168@gmail.com";
             } else {
+                // Si no está chequeado, lo deja vacío
                 let contenidoNombre = document.getElementById("nombre").value = "";
                 let contenidoApellido = document.getElementById("apellidos").value = "";
                 let contenidoNIF = document.getElementById("nif").value = "";
@@ -280,12 +296,12 @@
             }
         }
 
-        mostrarPresupuesto();
+        mostrarPresupuesto(); // Llamo a la función siempre para que siempre esté oculta. Y una vez se haga chequee el checkbox, se mostrará.
 
         // Validamos que los campos que son obligatorios estén rellenados
         function campos_obligatorios() {
             let valorRetorno = true;
-            // Son obligatorios DATOS PERSONALES, TITULO DE LA PROPUESTA, DESCRIPCION DE LA
+            // Son obligatorios DATOS PERSONALES, TITULO DE LA PROPUESTA, DESCRIPCIÓN DE LA
             // PROPUESTA, DESTINATARIOS, BENEFICIOS DE LA PROPUESTA, DURACIÓN DE LA PROPUESTA
 
             // DATOS PERSONALES
@@ -318,40 +334,13 @@
             let campoFechaInicio = document.getElementById("fechainicio").value;
             let campoFechaFin = document.getElementById("fechafin").value;
 
-            // CONTROL DEL CAMPO NOMBRE
-            if (campoNombre === "") {
-                alert("El campo nombre es obligatorio.");
-                valorRetorno = false;
-            }
             
-
-            // CONTROL DEL CAMPO APELLIDO
-            if (campoApellido === "") {
-                alert("El campo apellido es obligatorio");
-                valorRetorno = false;
-            }
-            
-
-            // CONTROL DEL CAMPO NIF/CIF
-            if (campoNIF === "") {
-                alert("El campo NIF/CIF es obligatorio");
+            // CONTROL DE LOS CAMPOS PERSONALES
+            if ((campoNombre === "") || (campoApellido === "") || (campoNIF === "") || (campoTelefono === "") || (campoMail === "")) {
+                alert("Faltan datos personales por rellenar.");
                 valorRetorno = false;
             }
 
-
-            // CONTROL DEL CAMPO TELEFONO
-            if (campoTelefono === "") {
-                alert("El campo teléfono es obligatorio");
-                valorRetorno = false;
-            }
-
-
-            // CONTROL DEL CAMPO EMAIL
-            if (campoMail === "") {
-                alert("El campo correo electrónico es obligatorio.");
-                valorRetorno = false;
-            }
-            
 
             // CONTROL DEL CAMPO TITULO
             if (campoTitulo === "") {
